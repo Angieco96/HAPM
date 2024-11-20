@@ -16,10 +16,22 @@
       padding: 10px;
       font-size: 16px;
     }
-    .result {
+    .result-container {
+      display: none; /* Ocultar contenedor inicialmente */
       margin-top: 20px;
-      font-weight: bold;
+      display: flex; /* Usar flexbox para disposición horizontal */
+      justify-content: center;
+      align-items: center;
+      gap: 20px; /* Espacio entre la imagen y el texto */
+    }
+    .result img {
+      height: 10cm; /* Altura de la imagen */
+      width: auto; /* Mantener proporción */
+    }
+    .result-text {
+      text-align: left;
       font-size: 18px;
+      font-weight: bold;
     }
     .success {
       color: green;
@@ -35,23 +47,30 @@
   <input type="password" id="password" placeholder="Contraseña">
   <br>
   <button onclick="checkPassword()">Validar</button>
-  <div id="result" class="result"></div>
+  <div id="result" class="result-container">
+    <img src="FotoMomentos.png" alt="Imagen descifrada" id="imagen">
+    <div class="result-text" id="result-text"></div>
+  </div>
 
   <script>
     // Contraseña correcta
-    const correctPassword = "mi_contraseña_segura"; // Cambia esto por tu contraseña
+    const correctPassword = "2901_Cartagena_Pinguino"; // Cambia esto por tu contraseña
 
     function checkPassword() {
       const userPassword = document.getElementById("password").value;
-      const resultDiv = document.getElementById("result");
+      const resultContainer = document.getElementById("result");
+      const resultText = document.getElementById("result-text");
+      const image = document.getElementById("imagen");
 
       // Verificar la contraseña
       if (userPassword === correctPassword) {
-        resultDiv.innerHTML = "¡Acceso concedido! Este es el mensaje descifrado: <b>Mensaje confidencial</b>";
-        resultDiv.className = "result success";
+        resultText.innerHTML = "Amor, quiero que sepas que te amo con todo mi ser";
+        resultText.className = "success";
+        resultContainer.style.display = "flex"; // Mostrar el contenedor con flexbox
       } else {
-        resultDiv.innerHTML = "Contraseña incorrecta. Inténtalo de nuevo.";
-        resultDiv.className = "result error";
+        resultText.innerHTML = "Contraseña incorrecta. Inténtalo de nuevo.";
+        resultText.className = "error";
+        resultContainer.style.display = "none"; // Asegurar que el contenedor no se muestre
       }
     }
   </script>
