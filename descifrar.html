@@ -24,9 +24,10 @@
       align-items: center;
       gap: 20px; /* Espacio entre la imagen y el texto */
     }
-    .result img {
+    img {
       height: 10cm; /* Altura de la imagen */
       width: auto; /* Mantener proporción */
+      display: none; /* Ocultar imagen inicialmente */
     }
     .result-text {
       text-align: left;
@@ -64,13 +65,15 @@
 
       // Verificar la contraseña
       if (userPassword === correctPassword) {
-        resultText.innerHTML = "Amor, quiero que sepas que te amo con todo mi ser";
+        resultText.innerHTML = "¡Acceso concedido! Este es el mensaje descifrado:<br><b>Mensaje confidencial</b>";
         resultText.className = "success";
         resultContainer.style.display = "flex"; // Mostrar el contenedor con flexbox
+        image.style.display = "block"; // Mostrar la imagen
       } else {
         resultText.innerHTML = "Contraseña incorrecta. Inténtalo de nuevo.";
         resultText.className = "error";
         resultContainer.style.display = "none"; // Asegurar que el contenedor no se muestre
+        image.style.display = "none"; // Asegurar que la imagen no se muestre
       }
     }
   </script>
