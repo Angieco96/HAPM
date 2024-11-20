@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Descifrar Mensaje</title>
+  <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+    input, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Descifrar Mensaje</h1>
+  <p>Introduce el texto cifrado:</p>
+  <textarea id="encryptedMessage" rows="5" cols="50" placeholder="Pega aquí el texto cifrado"></textarea>
+  <br>
+  <p>Introduce la contraseña:</p>
+  <input type="password" id="password" placeholder="Contraseña">
+  <br>
+  <button onclick="decryptMessage()">Descifrar</button>
+  <div id="result" class="result"></div>
+
+  <script>
+    function decryptMessage() {
+      const encryptedMessage = document.getElementById('encryptedMessage').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        // Descifrar el mensaje usando CryptoJS
+        const bytes = CryptoJS.AES.decrypt(encryptedMessage, password);
+        const decryptedMessage = bytes.toString(CryptoJS.enc.Utf8);
+
+        if (decryptedMessage) {
+          document.getElementById('result').innerText = "Mensaje descifrado: " + decryptedMessage;
+        } else {
+          throw new Error("Contraseña incorrecta o mensaje inválido.");
+        }
+      } catch (error) {
+        document.getElementById('result').innerText = "Error: Contraseña incorrecta o mensaje inválido.";
+      }
+    }
+  </script>
+</body>
+</html>
